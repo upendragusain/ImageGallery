@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -23,7 +24,10 @@ namespace ImageGallery.Client
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            });
 
             // register an IHttpContextAccessor so we can access the current
             // HttpContext in services by injecting it
@@ -50,7 +54,7 @@ namespace ImageGallery.Client
                 options.ClientId = "imagegalleryclient";// shoukd match IDP set value
                 options.ResponseType = "code";
                 // Enable PKCE (authorization code flow only)
-                //options.UsePkce = true;
+                options.UsePkce = true;
 
                 //options.CallbackPath = new PathString("");
                 options.Scope.Add("openid");
