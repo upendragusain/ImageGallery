@@ -1,0 +1,9 @@
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\bin\Debug\netcoreapp2.0\ImageGallery.Model.deps.json
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\bin\Debug\netcoreapp2.0\ImageGallery.Model.dll
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\bin\Debug\netcoreapp2.0\ImageGallery.Model.pdb
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\obj\Debug\netcoreapp2.0\ImageGallery.Model.csprojAssemblyReference.cache
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\obj\Debug\netcoreapp2.0\ImageGallery.Model.csproj.CoreCompileInputs.cache
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\obj\Debug\netcoreapp2.0\ImageGallery.Model.AssemblyInfoInputs.cache
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\obj\Debug\netcoreapp2.0\ImageGallery.Model.AssemblyInfo.cs
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\obj\Debug\netcoreapp2.0\ImageGallery.Model.dll
+C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\ImageGallery.Model\obj\Debug\netcoreapp2.0\ImageGallery.Model.pdb
