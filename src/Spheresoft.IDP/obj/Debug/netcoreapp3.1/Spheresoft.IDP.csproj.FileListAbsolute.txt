@@ -65,4 +65,3 @@ C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\Sp
 C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\Spheresoft.IDP\obj\Debug\netcoreapp3.1\Spheresoft.IDP.dll
 C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\Spheresoft.IDP\obj\Debug\netcoreapp3.1\Spheresoft.IDP.pdb
 C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\Spheresoft.IDP\obj\Debug\netcoreapp3.1\Spheresoft.IDP.genruntimeconfig.cache
-C:\source\SecuringAspNetCore2WithOAuth2AndOIDC\Starter Files\ImageGallery\src\Spheresoft.IDP\obj\Debug\netcoreapp3.1\Spheresoft.IDP.csprojAssemblyReference.cache
