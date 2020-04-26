@@ -1,4 +1,5 @@
-﻿using ImageGallery.Client.Services;
+﻿using IdentityModel.Client;
+using ImageGallery.Client.Services;
 using ImageGallery.Client.ViewModels;
 using ImageGallery.Model;
 using Microsoft.AspNetCore.Authentication;
@@ -13,6 +14,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -23,10 +25,13 @@ namespace ImageGallery.Client.Controllers
     public class GalleryController : Controller
     {
         private readonly IImageGalleryHttpClient _imageGalleryHttpClient;
+        private readonly IHttpClientFactory _clientFactory;
 
-        public GalleryController(IImageGalleryHttpClient imageGalleryHttpClient)
+        public GalleryController(IImageGalleryHttpClient imageGalleryHttpClient,
+            IHttpClientFactory clientFactory)
         {
             _imageGalleryHttpClient = imageGalleryHttpClient;
+            _clientFactory = clientFactory;
         }
 
         public async Task<IActionResult> Index()
@@ -178,6 +183,37 @@ namespace ImageGallery.Client.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             // also out of our Identity provider IDP Spheresoft
             await HttpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme);
+        }
+
+        public async Task<IActionResult> OrderFrame()
+        {
+            var idpClient = _clientFactory.CreateClient("IDPClient");
+
+            //get the userinfo endpoint from idp
+            var metaDataResponse = await idpClient.GetDiscoveryDocumentAsync();
+            if (metaDataResponse.IsError)
+            {
+                throw new Exception("Problem accessing the discovery endpoint", metaDataResponse.Exception);
+            }
+
+            //get token
+            var accessToken = await HttpContext.GetTokenAsync(OpenIdConnectParameterNames.AccessToken);
+
+            //now call the userinfo endpoint on idp with the token
+            var userInfoResponse = await idpClient.GetUserInfoAsync(new UserInfoRequest
+            {
+                Address = metaDataResponse.UserInfoEndpoint,
+                Token = accessToken
+            });
+            if (userInfoResponse.IsError)
+            {
+                throw new Exception("Problem accessing the UserInfo endpoint", metaDataResponse.Exception);
+            }
+
+            var address = userInfoResponse.Claims
+                .FirstOrDefault(c => c.Type == "address")?.Value;
+
+            return View(new OrderFrameViewModel(address));
         }
 
         public async Task WriteOutIdentityInformation()
