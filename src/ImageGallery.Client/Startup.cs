@@ -57,7 +57,11 @@ namespace ImageGallery.Client
             //once an identity token is validated and transformed to a claims identity
             //it will be stored in an encrypted cookie
             //which is then used on subsequent requests to the web app 
-            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                options.AccessDeniedPath = "/Authorization/AccessDenied";
+            })
+
             //this registers and configures the open id connect handler
             //for OpenIdConnectDefaults.AuthenticationScheme which is set as the DefaultChallengeScheme
             .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>

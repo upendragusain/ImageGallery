@@ -281,3 +281,5 @@ src/**/inf.yaml
 *.dll
 
 *.cache
+
+src/ImageGallery.Client/obj/Debug/netcoreapp3.1/ImageGallery.Client.csproj.FileListAbsolute.txt
