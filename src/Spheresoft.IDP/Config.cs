@@ -16,7 +16,12 @@ namespace Spheresoft.IDP
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                 new IdentityResources.Address(),
-                new IdentityResource("roles","Your role(s)",new List<string>() {"role"})
+                new IdentityResource("roles","Your role(s)",
+                    new List<string>() {"role"}),
+                new IdentityResource("country", "Your country",
+                    new List<string> { "country"}),
+                new IdentityResource("subscriptionlevel", "Your subscription level",
+                    new List<string> { "subscriptionlevel"})
             };
 
         public static IEnumerable<ApiResource> Apis =>
@@ -45,7 +50,9 @@ namespace Spheresoft.IDP
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Address,
                         "roles",
-                        "imagegalleryapi"
+                        "imagegalleryapi",
+                        "country",
+                        "subscriptionlevel"
                     },
                     ClientSecrets =
                     {

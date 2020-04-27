@@ -23,7 +23,9 @@ namespace src
                     new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
                     new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
                     new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json),
-                    new Claim("role","FreeUser")
+                    new Claim("role","FreeUser"),
+                    new Claim("country", "nl"),
+                    new Claim("subscriptionlevel", "FreeUser")
                 }
             },
             new TestUser{SubjectId = "d860efca-22d9-47fd-8249-791ba61b07c7", Username = "bob", Password = "bob", 
@@ -37,7 +39,9 @@ namespace src
                     new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
                     new Claim(JwtClaimTypes.Address, @"{ 'street_address': 'One Hacker Way', 'locality': 'Heidelberg', 'postal_code': 69118, 'country': 'Germany' }", IdentityServer4.IdentityServerConstants.ClaimValueTypes.Json),
                     new Claim("location", "somewhere"),
-                    new Claim("role","PayingUser")
+                    new Claim("role","PayingUser"),
+                    new Claim("country", "be"),
+                    new Claim("subscriptionlevel", "PayingUser")
                 }
             }
         };
