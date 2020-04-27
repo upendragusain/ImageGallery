@@ -62,9 +62,11 @@ namespace Spheresoft.IDP
                     PostLogoutRedirectUris =
                     {
                         "https://localhost:44300/signout-callback-oidc"
-                    }
+                    },
+                    AccessTokenLifetime = 120,
+                    AllowOfflineAccess = true,
+                    UpdateAccessTokenClaimsOnRefresh = true
                 }
             };
-        
     }
 }
