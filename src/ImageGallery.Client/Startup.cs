@@ -1,4 +1,5 @@
 ﻿using IdentityModel;
+using ImageGallery.Client.HttpHandlers;
 using ImageGallery.Client.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -39,8 +40,18 @@ namespace ImageGallery.Client
             // HttpContext in services by injecting it
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddHttpContextAccessor();
+            services.AddTransient<BearerTokenHandler>();
+
             // register an IImageGalleryHttpClient
-            services.AddScoped<IImageGalleryHttpClient, ImageGalleryHttpClient>();
+            //services.AddScoped<IImageGalleryHttpClient, ImageGalleryHttpClient>();
+
+            services.AddHttpClient("APIClient", client =>
+            {
+                client.BaseAddress = new System.Uri("http://localhost:1601/");
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add(HeaderNames.Accept, "application/json");
+            }).AddHttpMessageHandler<BearerTokenHandler>();
 
             services.AddHttpClient("IDPClient", client =>
             {
@@ -78,6 +89,11 @@ namespace ImageGallery.Client
                 options.Scope.Add("profile");
                 options.Scope.Add("address");
                 options.Scope.Add("roles");
+                options.Scope.Add("imagegalleryapi");
+                options.ClaimActions.DeleteClaim("sid");
+                options.ClaimActions.DeleteClaim("idp");
+                options.ClaimActions.DeleteClaim("s_hash");
+                options.ClaimActions.DeleteClaim("auth_time");
                 options.ClaimActions.MapUniqueJsonKey("role", "role");
                 options.SaveTokens = true;
                 options.ClientSecret = "secret";

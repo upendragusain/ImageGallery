@@ -23,6 +23,8 @@ namespace ImageGallery.Client.Services
             _httpClient.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
+            //_httpClient.AddHttpMessageHandler
+
             return _httpClient;
         }        
     }

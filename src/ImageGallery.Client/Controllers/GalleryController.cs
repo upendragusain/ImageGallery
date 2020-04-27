@@ -24,14 +24,14 @@ namespace ImageGallery.Client.Controllers
     [Authorize]
     public class GalleryController : Controller
     {
-        private readonly IImageGalleryHttpClient _imageGalleryHttpClient;
+        private readonly HttpClient imageGalleryHttpClient;
         private readonly IHttpClientFactory _clientFactory;
 
-        public GalleryController(IImageGalleryHttpClient imageGalleryHttpClient,
+        public GalleryController(//IImageGalleryHttpClient imageGalleryHttpClient,
             IHttpClientFactory clientFactory)
         {
-            _imageGalleryHttpClient = imageGalleryHttpClient;
             _clientFactory = clientFactory;
+            imageGalleryHttpClient = clientFactory.CreateClient("APIClient");
         }
 
         public async Task<IActionResult> Index()
@@ -39,9 +39,9 @@ namespace ImageGallery.Client.Controllers
             await WriteOutIdentityInformation();
 
             // call the API
-            var httpClient = await _imageGalleryHttpClient.GetClient(); 
+            //var httpClient = await _imageGalleryHttpClient.GetClient(); 
 
-            var response = await httpClient.GetAsync("api/images").ConfigureAwait(false);
+            var response = await imageGalleryHttpClient.GetAsync("api/images").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
@@ -59,9 +59,9 @@ namespace ImageGallery.Client.Controllers
         public async Task<IActionResult> EditImage(Guid id)
         {
             // call the API
-            var httpClient = await _imageGalleryHttpClient.GetClient();
+            //var httpClient = await _imageGalleryHttpClient.GetClient();
 
-            var response = await httpClient.GetAsync($"api/images/{id}").ConfigureAwait(false);
+            var response = await imageGalleryHttpClient.GetAsync($"api/images/{id}").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
@@ -97,9 +97,9 @@ namespace ImageGallery.Client.Controllers
             var serializedImageForUpdate = JsonConvert.SerializeObject(imageForUpdate);
 
             // call the API
-            var httpClient = await _imageGalleryHttpClient.GetClient();
+            //var httpClient = await _imageGalleryHttpClient.GetClient();
 
-            var response = await httpClient.PutAsync(
+            var response = await imageGalleryHttpClient.PutAsync(
                 $"api/images/{editImageViewModel.Id}",
                 new StringContent(serializedImageForUpdate, System.Text.Encoding.Unicode, "application/json"))
                 .ConfigureAwait(false);                        
@@ -115,9 +115,9 @@ namespace ImageGallery.Client.Controllers
         public async Task<IActionResult> DeleteImage(Guid id)
         {
             // call the API
-            var httpClient = await _imageGalleryHttpClient.GetClient();
+            //var httpClient = await _imageGalleryHttpClient.GetClient();
 
-            var response = await httpClient.DeleteAsync($"api/images/{id}").ConfigureAwait(false);
+            var response = await imageGalleryHttpClient.DeleteAsync($"api/images/{id}").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
@@ -162,9 +162,9 @@ namespace ImageGallery.Client.Controllers
             var serializedImageForCreation = JsonConvert.SerializeObject(imageForCreation);
 
             // call the API
-            var httpClient = await _imageGalleryHttpClient.GetClient();
+            //var httpClient = await _imageGalleryHttpClient.GetClient();
 
-            var response = await httpClient.PostAsync(
+            var response = await imageGalleryHttpClient.PostAsync(
                 $"api/images",
                 new StringContent(serializedImageForCreation, System.Text.Encoding.Unicode, "application/json"))
                 .ConfigureAwait(false); 

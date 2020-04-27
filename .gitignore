@@ -283,3 +283,9 @@ src/**/inf.yaml
 *.cache
 
 src/ImageGallery.Client/obj/Debug/netcoreapp3.1/ImageGallery.Client.csproj.FileListAbsolute.txt
+
+src/Spheresoft.IDP/obj/Debug/netcoreapp3.1/Spheresoft.IDP.csproj.FileListAbsolute.txt
+
+src/ImageGallery.Model/obj/Debug/netcoreapp3.1/ImageGallery.Model.csproj.FileListAbsolute.txt
+
+src/ImageGallery.API/obj/Debug/netcoreapp3.1/ImageGallery.API.csproj.FileListAbsolute.txt
